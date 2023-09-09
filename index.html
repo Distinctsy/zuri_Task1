@@ -3,49 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
+    <title>My Potofolio</title>
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
     <div class="body">
-      <div id="name">
-        <h1 data-testid="slackUserName">Oluwaseyi Simon</h1>
+      <div id="name" data-testid="slackUserName">
+        <h1>Oluwaseyi Simon</h1>
       </div>
 
       <div id="img">
-        <img
-          src="sy5.jpg"
-          alt="Oluwaseyi Simon"
-          data-testid="slackDisplayImage"
-        />
+        <img src="sy5.jpg" alt="Oluwaseyi Simon" />
       </div>
 
       <div id="dayme">
-        <p data-testid="currentDayOfTheWeek">Monday</p>
+        <p class="day-utc">
+          <span class="day" data-testid="currentDayOfTheWeek">...</span>
+          <span class="time" data-testid="currentUTCTime">00:00</span>
+        </p>
       </div>
 
-      <div id="time">
-        <p data-testid="currentUTCTime">12:00 PM UTC</p>
-      </div>
-
-      <div id="track">
-        <!-- Track -->
-        <p data-testid="myTrack">Track: Frontend</p>
+      <div id="track" data-testid="myTrack">
+        <p>Frontend</p>
       </div>
 
       <div id="hub">
-        <!-- GitHub URL -->
         <p>
-          GitHub Repository:
-          <a href="https://github.com/distinctsy" data-testid="githubURL">
-            <span>Distinctsy</span>
+          <a href="https://github.com/Distinctsy/zuri_Task1.git">
+            <span>GitHub</span>
           </a>
         </p>
       </div>
     </div>
 
     <script>
-      const daysOfWeek = [
+      const dayOfTheWeek = document.querySelector(".day");
+      const currentTime = document.querySelector(".time");
+
+      const today = new Date();
+      let secs = today.getUTCMilliseconds();
+
+      const days = [
         "Sunday",
         "Monday",
         "Tuesday",
@@ -54,16 +52,14 @@
         "Friday",
         "Saturday",
       ];
-      const today = new Date();
-      const dayOfWeek = daysOfWeek[today.getUTCDay()];
-      const currentTime = today.toUTCString();
 
-      document.querySelector(
-        '[data-testid="currentDayOfTheWeek"]'
-      ).textContent = `Current Day: ${dayOfWeek}`;
-      document.querySelector(
-        '[data-testid="currentUTCTime"]'
-      ).textContent = `Current UTC Time: ${currentTime}`;
+      dayOfTheWeek.innerHTML = `${days[today.getDay()]}`;
+      currentTime.innerHTML = `${today.getUTCMilliseconds()}`;
+
+      // window.setInterval(() => {
+
+      // }, 1000);
     </script>
   </body>
 </html>
+
